@@ -4,7 +4,7 @@ import {
   getAllMinuman,
 } from "@/src/services/apiConfig";
 import { Layout } from "@/src/components";
-import { ListProducts, ListTypeProducts } from "@/src/containers";
+import { Cart, ListProducts, ListTypeProducts } from "@/src/containers";
 import {
   Wrapper,
   Title,
@@ -20,6 +20,8 @@ export default function ProductsPage({ products }) {
     name: products[0].name,
     data: products[0].data,
   });
+
+  const [productCart, setProductCart] = useState([]);
 
   return (
     <Layout title="Products Page" active="Products">
@@ -38,9 +40,14 @@ export default function ProductsPage({ products }) {
           />
         </ProductTitleSideBar>
         <ProductSideBar>
-          <ListProducts payload={productFiltered} />
+          <ListProducts
+            payload={productFiltered}
+            productCart={productCart}
+            setProductCart={setProductCart}
+          />
         </ProductSideBar>
       </Content>
+      <Cart productCart={productCart} setProductCart={setProductCart} />
     </Layout>
   );
 }

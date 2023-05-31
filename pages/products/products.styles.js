@@ -22,6 +22,7 @@ export const Desc = styled.p`
 export const Content = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 50px;
 `;
 
 export const ProductTitleSideBar = styled.div`

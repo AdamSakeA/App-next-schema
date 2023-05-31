@@ -3,9 +3,15 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Button(props) {
-  const { className, children, onClick, disabled } = props;
+  const { className, children, onClick, disabled, onSubmit, type } = props;
   return (
-    <button className={className} onClick={onClick} disabled={disabled}>
+    <button
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      onSubmit={onSubmit}
+      type={type}
+    >
       {children}
     </button>
   );

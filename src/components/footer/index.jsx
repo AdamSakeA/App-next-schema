@@ -1,9 +1,10 @@
 import React from "react";
+import { FooterContainer } from "./footer.styles";
 
 export default function Footer() {
   return (
-    <div>
+    <FooterContainer>
       <h3>ini adalah footer</h3>
-    </div>
+    </FooterContainer>
   );
 }

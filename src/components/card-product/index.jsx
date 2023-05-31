@@ -1,10 +1,25 @@
-import React from "react";
 import { Card, Content } from "./card-product.styles";
 import Image from "next/image";
 
-export default function CardProduct({ product }) {
+export default function CardProduct({ product, productCart, setProductCart }) {
+  const addToCart = (product) => {
+    const existingProductIndex = productCart.findIndex(
+      (p) => p.title === product.title
+    );
+    if (existingProductIndex !== -1) {
+      const updatedProductCart = [...productCart];
+      updatedProductCart[existingProductIndex].quantity += 1;
+      setProductCart(updatedProductCart);
+    } else {
+      setProductCart((prevProductCart) => [
+        ...prevProductCart,
+        { ...product, quantity: 1 },
+      ]);
+    }
+  };
+
   return (
-    <Card>
+    <Card onClick={() => addToCart(product)}>
       <Image
         className="image-card__product"
         src={product?.image}

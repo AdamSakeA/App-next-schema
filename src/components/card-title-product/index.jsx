@@ -1,11 +1,7 @@
 import React from "react";
 
-import {
-  CardTitle,
-  IconSate,
-  IconMinuman,
-  IconPaket,
-} from "./card-title-product.styles";
+import { CardTitle } from "./card-title-product.styles";
+import { IconSate, IconMinuman, IconPaket } from "@/styles/icons.styles";
 
 export default function CardTitleProduct({ title }) {
   const Icon = () => {
