@@ -1,5 +1,5 @@
 import { Layout } from "@/src/components";
-import { Desc, Wrapper, Title } from "./payment.styles";
+import { Desc, Wrapper, Title } from "../../styles/payment.styles";
 import { FormPayment, ListItemPayment } from "@/src/containers";
 
 export default function PaymentPage() {
