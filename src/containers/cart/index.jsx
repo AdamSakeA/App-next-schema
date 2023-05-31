@@ -1,11 +1,12 @@
 import { ButtonPrimary, ButtonSecondary, PopUpCart } from "@/src/components";
 import { CartContainer, ButtonContainer } from "./cart.styles";
 import { IconCart } from "@/styles/icons.styles";
-import { useToggle, useTotal } from "@/src/utils/hooks";
+import { useStorage, useToggle, useTotal } from "@/src/utils/hooks";
 import { useRouter } from "next/router";
 
 export default function Cart({ productCart, setProductCart }) {
   const { status, toggleStatus } = useToggle();
+  const storage = useStorage();
   const { totalOrdered, totalPrice } = useTotal(productCart);
   const router = useRouter();
 
@@ -20,8 +21,8 @@ export default function Cart({ productCart, setProductCart }) {
   };
 
   const submitPayment = (data) => {
-    sessionStorage.setItem("productCart", JSON.stringify(data));
-    router.push("/payment");
+    storage.setItem("productCart", data, "session");
+    router.push("/products/payment");
   };
 
   if (status) {

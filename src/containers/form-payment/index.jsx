@@ -53,7 +53,7 @@ export default function FormPayment({ productCart }) {
         name={item.id}
         value={formik.values[item.id]}
         onChange={formik.handleChange}
-        required
+        required={item.id === "notes" ? false : true}
         type={item.id === "notes" ? "textarea" : "text"}
         errors={formik.errors[item.id]}
       />

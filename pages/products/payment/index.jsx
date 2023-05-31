@@ -1,10 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Layout } from "@/src/components";
-import { Desc, Wrapper, Title } from "../../styles/payment.styles";
+import { Desc, Wrapper, Title } from "@/styles/payment.styles";
 import { FormPayment, ListItemPayment } from "@/src/containers";
+import { useStorage } from "@/src/utils/hooks/";
+import { useState, useEffect } from "react";
 
 export default function PaymentPage() {
-  const storedProductCart = sessionStorage.getItem("productCart");
-  const productCart = JSON.parse(storedProductCart);
+  const storage = useStorage();
+  const [productCart, setProductCart] = useState();
+
+  useEffect(() => {
+    const stored = storage.getItem("productCart");
+    const valueData = stored !== null ? stored : [];
+    setProductCart(valueData);
+  }, []);
 
   return (
     <Layout title="Payment Page" active="Products">

@@ -4,7 +4,7 @@ import { useTotal } from "@/src/utils/hooks";
 
 export default function ListItemPayment({ payload }) {
   const { totalPrice } = useTotal(payload);
-  const cardPayment = payload.map((item, i) => (
+  const cardPayment = payload?.map((item, i) => (
     <CardItemPayment key={i} item={item} />
   ));
 
