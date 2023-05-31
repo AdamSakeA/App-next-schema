@@ -21,7 +21,7 @@ export default function Cart({ productCart, setProductCart }) {
 
   const submitPayment = (data) => {
     sessionStorage.setItem("productCart", JSON.stringify(data));
-    router.push("/products/payment");
+    router.push("/payment");
   };
 
   if (status) {
