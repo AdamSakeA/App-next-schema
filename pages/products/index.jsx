@@ -12,7 +12,7 @@ import {
   Content,
   ProductTitleSideBar,
   ProductSideBar,
-} from "./products.styles";
+} from "../../styles/products.styles";
 import { useState } from "react";
 
 export default function ProductsPage({ products }) {
