@@ -19,7 +19,7 @@ export const Desc = styled.p`
   color: ${(props) => props.theme.colors.bgGrey};
 `;
 
-export const Content = styled.div`
+export const Contents = styled.div`
   display: flex;
   gap: 20px;
   margin-top: 50px;

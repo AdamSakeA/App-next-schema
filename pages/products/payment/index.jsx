@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Layout } from "@/src/components";
-import { Desc, Wrapper, Title } from "@/styles/payment.styles";
+import { Desc, Wrapper, Title } from "@/styles/payment-page/payment.styles";
 import { FormPayment, ListItemPayment } from "@/src/containers";
 import { useStorage } from "@/src/utils/hooks/";
 import { useState, useEffect } from "react";

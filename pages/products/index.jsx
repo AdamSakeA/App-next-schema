@@ -9,10 +9,10 @@ import {
   Wrapper,
   Title,
   Desc,
-  Content,
+  Contents,
   ProductTitleSideBar,
   ProductSideBar,
-} from "../../styles/products.styles";
+} from "@/styles/product-page/products.styles";
 import { useState } from "react";
 
 export default function ProductsPage({ products }) {
@@ -32,7 +32,7 @@ export default function ProductsPage({ products }) {
           yang unik.
         </Desc>
       </Wrapper>
-      <Content>
+      <Contents>
         <ProductTitleSideBar>
           <ListTypeProducts
             payload={products}
@@ -46,7 +46,7 @@ export default function ProductsPage({ products }) {
             setProductCart={setProductCart}
           />
         </ProductSideBar>
-      </Content>
+      </Contents>
       <Cart productCart={productCart} setProductCart={setProductCart} />
     </Layout>
   );
