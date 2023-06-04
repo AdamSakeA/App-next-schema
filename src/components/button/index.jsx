@@ -26,7 +26,12 @@ export const ButtonPrimary = styled(Button)`
   border-radius: 20px;
   font-size: ${(props) => props.theme.fontSize.subHead};
   font-weight: 600;
-  &:hover {
+  &:disabled {
+    background-color: grey;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+  &:not(:disabled):hover {
     transition: 0.8s;
     box-shadow: 0px 0px 10px rgba(208, 68, 68, 1);
   }
@@ -41,8 +46,14 @@ export const ButtonSecondary = styled(Button)`
   font-size: ${(props) => props.theme.fontSize.subHead};
   font-weight: 600;
   cursor: pointer;
-
-  &:hover {
+  &:disabled {
+    background-color: #969696;
+    box-shadow: none;
+    cursor: not-allowed;
+    color: white;
+    border: none;
+  }
+  &:not(:disabled):hover {
     background-color: ${(props) => props.theme.colors.bgRedSecond};
     color: white;
     border: none;

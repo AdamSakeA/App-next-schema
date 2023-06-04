@@ -3,10 +3,13 @@ import Layout from "./layout";
 import CardProduct from "./card-product";
 import Footer from "./footer";
 import Button, { ButtonPrimary, ButtonSecondary } from "./button";
-import PopUpCart from "./popup-cart";
-import CartItemPopUp from "./cart-item-popup";
+import CardCartProduct from "./card-cart-product";
 import CardItemPayment from "./card-item-payment";
+import CardTitleProduct from "./card-title-product";
 import TextInput from "./text-input";
+import Loading from "./loading";
+import CardProductSkeleton from "./card-product-skeleton";
+import CardTitleProductSkeleton from "./card-title-product-skeleton";
 
 export {
   Navigation,
@@ -16,8 +19,11 @@ export {
   Button,
   ButtonPrimary,
   ButtonSecondary,
-  PopUpCart,
-  CartItemPopUp,
+  CardCartProduct,
   CardItemPayment,
+  CardTitleProduct,
   TextInput,
+  Loading,
+  CardProductSkeleton,
+  CardTitleProductSkeleton,
 };

@@ -1,18 +1,18 @@
 const navigationData = [
   {
-    name: "Home",
+    name: "Beranda",
     url: "/",
   },
   {
-    name: "Products",
+    name: "Produk",
     url: "/products",
   },
   {
-    name: "About",
+    name: "Tentang Kami",
     url: "/about",
   },
   {
-    name: "How To Pay",
+    name: "Cara Pembayaran",
     url: "/howtopay",
   },
 ];

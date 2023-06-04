@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
 
   const onNavigateTo = (url) => {
-    router.push(`${url}`);
+    router.push(url);
   };
 
   return (
@@ -31,13 +31,13 @@ export default function Home() {
         </div>
         <div className="button-container">
           <ButtonPrimary onClick={() => onNavigateTo("/products")}>
-            Products
+            Pergi Belanja
           </ButtonPrimary>
           <ButtonSecondary
             style="secondary"
             onClick={() => onNavigateTo("/about")}
           >
-            About
+            Tentang Kami
           </ButtonSecondary>
         </div>
       </Wrapper>

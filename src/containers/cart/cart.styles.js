@@ -1,27 +1,46 @@
 import styled from "styled-components";
 
 export const CartContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex: 2;
   padding: 20px 30px;
-  background-color: ${(props) => props.theme.colors.bgWhite};
-  margin-top: 50px;
   border-radius: 20px;
   color: ${(props) => props.theme.colors.bgGrey};
-  position: fixed;
-  bottom: 50px;
-  z-index: 999;
-  width: 80%;
-  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
   .title__cart {
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-bottom: 20px;
+    /* font-size: ${(props) => props.theme.fontSize.body}; */
   }
-`;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  gap: 30px;
+  .cart__ordered {
+    margin-bottom: 20px;
+    font-size: ${(props) => props.theme.fontSize.subHead};
+  }
+
+  .list__cart {
+    height: 70vh;
+    color: black;
+    overflow-y: scroll;
+    color: ${(props) => props.theme.colors.bgGrey};
+    margin: 30px 0;
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: grey;
+      border-radius: 10px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: grey;
+    }
+  }
 `;

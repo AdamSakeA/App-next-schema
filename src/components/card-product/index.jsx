@@ -1,4 +1,6 @@
+import { IconCart } from "@/styles/icons.styles";
 import { Card, Content } from "./card-product.styles";
+import { priceFormatted } from "@/src/utils";
 import Image from "next/image";
 
 export default function CardProduct({ product, productCart, setProductCart }) {
@@ -22,15 +24,16 @@ export default function CardProduct({ product, productCart, setProductCart }) {
     <Card onClick={() => addToCart(product)}>
       <Image
         className="image-card__product"
-        src={product?.image}
-        alt={product?.title}
+        src={product.image}
+        alt={product.title}
         width={200}
         height={200}
       />
+      <IconCart className="icon-cart__product" />
       <Content>
-        <h2 className="title-card">{product?.title}</h2>
-        <p className="desc-card">{product?.desc}</p>
-        <h3 className="price-card">Rp.{product?.price}</h3>
+        <h2 className="title-card">{product.title}</h2>
+        <p className="desc-card">{product.desc}</p>
+        <h3 className="price-card">Rp.{priceFormatted(product.price)}</h3>
       </Content>
     </Card>
   );

@@ -1,17 +1,20 @@
 import Image from "next/image";
+import * as Yup from "yup";
+// utils
+import { whatsappMessage } from "@/src/utils";
+// hooks
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+// component
 import { ButtonPrimary, ButtonSecondary, TextInput } from "@/src/components";
-import whatsappMessage from "@/src/utils/whatsappMessage";
-
+// style
 import { Container, Contents, ButtonContainer } from "./form-payment.styles";
 
 const dataInit = [
-  { label: "Nama", id: "name" },
-  { label: "Alamat", id: "alamat" },
-  { label: "E-mail", id: "email" },
-  { label: "Nomor Telepon", id: "phone" },
+  { label: "Nama", id: "name", placeholder: "Masukkan nama..." },
+  { label: "Alamat", id: "alamat", placeholder: "Masukkan alamat..." },
+  { label: "E-mail", id: "email", placeholder: "Masukkan email..." },
+  { label: "Nomor Telepon", id: "phone", placeholder: "ex: 0859999999" },
   { label: "Catatan", id: "notes" },
 ];
 
@@ -41,7 +44,8 @@ export default function FormPayment({ productCart }) {
   });
 
   const handleCanceledOrder = () => {
-    router.push("/products");
+    const url = "/products";
+    router.push(url);
   };
 
   const displayForm = dataInit.map((item, i) => {
@@ -53,6 +57,7 @@ export default function FormPayment({ productCart }) {
         name={item.id}
         value={formik.values[item.id]}
         onChange={formik.handleChange}
+        placeholder={item.placeholder}
         required={item.id === "notes" ? false : true}
         type={item.id === "notes" ? "textarea" : "text"}
         errors={formik.errors[item.id]}
@@ -67,7 +72,12 @@ export default function FormPayment({ productCart }) {
         <form onSubmit={formik.handleSubmit}>
           {displayForm}
           <ButtonContainer>
-            <ButtonPrimary type="submit">Bayar</ButtonPrimary>
+            <ButtonPrimary
+              type="submit"
+              disabled={formik.isValid ? false : true}
+            >
+              Bayar
+            </ButtonPrimary>
             <ButtonSecondary onClick={() => handleCanceledOrder()}>
               Batal
             </ButtonSecondary>

@@ -1,41 +1,20 @@
-import { ButtonPrimary, ButtonSecondary, PopUpCart } from "@/src/components";
-import { CartContainer, ButtonContainer } from "./cart.styles";
+import { ButtonPrimary } from "@/src/components";
 import { IconCart } from "@/styles/icons.styles";
-import { useStorage, useToggle, useTotal } from "@/src/utils/hooks";
+import { useStorage, useTotal } from "@/src/hooks";
 import { useRouter } from "next/router";
+import { ListCart } from "..";
+import { CartContainer } from "./cart.styles";
 
 export default function Cart({ productCart, setProductCart }) {
-  const { status, toggleStatus } = useToggle();
-  const storage = useStorage();
   const { totalOrdered, totalPrice } = useTotal(productCart);
+  const storage = useStorage();
   const router = useRouter();
 
-  const handleUpdateCart = (updatedProduct) => {
-    const updatedItems = productCart.map((product) => {
-      if (product.title === updatedProduct.title) {
-        return { ...product, quantity: updatedProduct.quantity };
-      }
-      return product;
-    });
-    setProductCart(updatedItems);
-  };
-
   const submitPayment = (data) => {
+    const url = "/products/payment";
     storage.setItem("productCart", data, "session");
-    router.push("/products/payment");
+    router.push(url);
   };
-
-  if (status) {
-    return (
-      <PopUpCart
-        data={productCart}
-        amountPrice={totalPrice}
-        toggleStatus={toggleStatus}
-        updateCart={handleUpdateCart}
-        submitPayment={submitPayment}
-      />
-    );
-  }
 
   return (
     <CartContainer>
@@ -43,16 +22,17 @@ export default function Cart({ productCart, setProductCart }) {
         <IconCart />
         <h1>Cart</h1>
       </div>
-      <h2>{totalOrdered} Pesanan</h2>
-      <h2>Total Harga Rp.{totalPrice}</h2>
-      <ButtonContainer>
-        <ButtonPrimary onClick={() => submitPayment(productCart)}>
-          Bayar
-        </ButtonPrimary>
-        <ButtonSecondary onClick={() => toggleStatus()}>
-          Lihat Pesanan
-        </ButtonSecondary>
-      </ButtonContainer>
+      <div className="list__cart">
+        <ListCart payload={productCart} setProductCart={setProductCart} />
+      </div>
+      <h2 className="cart__ordered">{totalOrdered} Pesanan</h2>
+      <h2 className="cart__ordered">Total Harga Rp.{totalPrice}</h2>
+      <ButtonPrimary
+        disabled={productCart.length === 0}
+        onClick={() => submitPayment(productCart)}
+      >
+        Bayar Sekarang
+      </ButtonPrimary>
     </CartContainer>
   );
 }

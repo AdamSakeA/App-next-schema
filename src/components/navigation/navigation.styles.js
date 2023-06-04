@@ -4,7 +4,7 @@ import Link from "next/link";
 export const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
-  padding: 20px 0px;
+  padding: 20px 100px;
   color: ${(props) => props.theme.colors.bgGrey};
   font-size: ${(props) => props.theme.fontSize.captions};
   align-items: center;

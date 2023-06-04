@@ -11,6 +11,7 @@ export default function TextInput(props) {
     pattern,
     errors,
     type = "text",
+    placeholder,
   } = props;
 
   if (type === "textarea") {
@@ -40,6 +41,7 @@ export default function TextInput(props) {
           onChange={onChange}
           required={required}
           pattern={pattern}
+          placeholder={placeholder}
         />
       </Contents>
       <p className="input-error">{errors}</p>

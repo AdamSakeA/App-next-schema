@@ -18,8 +18,9 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
-    body {
+    main {
         max-width: 1240px;
-        margin: auto;
+        margin: 100px auto;
+        
     } 
 `;

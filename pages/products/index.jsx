@@ -4,24 +4,12 @@ import {
   getAllMinuman,
 } from "@/src/services/apiConfig";
 import { Layout } from "@/src/components";
-import { Cart, ListProducts, ListTypeProducts } from "@/src/containers";
-import {
-  Wrapper,
-  Title,
-  Desc,
-  Contents,
-  ProductTitleSideBar,
-  ProductSideBar,
-} from "@/styles/product-page/products.styles";
-import { useState } from "react";
+import { ListProducts } from "@/src/containers";
+import { Wrapper, Title, Desc } from "@/styles/product-page/products.styles";
+import { useLoading } from "@/src/hooks";
 
 export default function ProductsPage({ products }) {
-  const [productFiltered, setProductFiltered] = useState({
-    name: products[0].name,
-    data: products[0].data,
-  });
-
-  const [productCart, setProductCart] = useState([]);
+  const isLoading = useLoading();
 
   return (
     <Layout title="Products Page" active="Products">
@@ -32,22 +20,7 @@ export default function ProductsPage({ products }) {
           yang unik.
         </Desc>
       </Wrapper>
-      <Contents>
-        <ProductTitleSideBar>
-          <ListTypeProducts
-            payload={products}
-            setProductFiltered={setProductFiltered}
-          />
-        </ProductTitleSideBar>
-        <ProductSideBar>
-          <ListProducts
-            payload={productFiltered}
-            productCart={productCart}
-            setProductCart={setProductCart}
-          />
-        </ProductSideBar>
-      </Contents>
-      <Cart productCart={productCart} setProductCart={setProductCart} />
+      <ListProducts payload={products} isLoading={isLoading} />
     </Layout>
   );
 }

@@ -1,25 +1,32 @@
-import React from "react";
-
 import { CardTitle } from "./card-title-product.styles";
 import { IconSate, IconMinuman, IconPaket } from "@/styles/icons.styles";
 
-export default function CardTitleProduct({ title }) {
+export default function CardTitleProduct(props) {
+  const { product, productFiltered, setProductFiltered } = props;
+
   const Icon = () => {
-    if (title === "Sate Taichan") {
+    if (product.name === "Sate Taichan") {
       return <IconSate />;
     }
-    if (title === "Minuman") {
+    if (product.name === "Minuman") {
       return <IconMinuman />;
     }
-    if (title === "Paket Bucin") {
+    if (product.name === "Paket Bucin") {
       return <IconPaket />;
     }
   };
 
+  const getProductFiltered = (name, data) => {
+    setProductFiltered({ name, data });
+  };
+
   return (
-    <CardTitle>
+    <CardTitle
+      active={product.name === productFiltered.name ? true : false}
+      onClick={() => getProductFiltered(product.name, product.data)}
+    >
       <Icon />
-      <h1>{title}</h1>
+      <h3>{product.name}</h3>
     </CardTitle>
   );
 }

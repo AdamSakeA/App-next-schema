@@ -1,21 +1,16 @@
-import CardTitleProduct from "@/src/components/card-title-product";
-import { Container } from "./list-type-products.styles";
+import { CardTitleProduct } from "@/src/components";
 
-export default function ListTypeProducts({ payload, setProductFiltered }) {
-  const getProductFiltered = (name, data) => {
-    setProductFiltered({ name, data });
-  };
+export default function ListTypeProducts(props) {
+  const { data, productFiltered, setProductFiltered } = props;
 
-  const titleProduct = payload?.map((item, i) => {
-    return (
-      <Container
-        key={i}
-        onClick={() => getProductFiltered(item.name, item.data)}
-      >
-        <CardTitleProduct title={item.name} />
-      </Container>
-    );
-  });
+  const titleProduct = data?.map((item, i) => (
+    <CardTitleProduct
+      key={i}
+      product={item}
+      productFiltered={productFiltered}
+      setProductFiltered={setProductFiltered}
+    />
+  ));
 
   return titleProduct;
 }

@@ -2,7 +2,7 @@
 import { Layout } from "@/src/components";
 import { Desc, Wrapper, Title } from "@/styles/payment-page/payment.styles";
 import { FormPayment, ListItemPayment } from "@/src/containers";
-import { useStorage } from "@/src/utils/hooks/";
+import { useStorage } from "@/src/hooks";
 import { useState, useEffect } from "react";
 
 export default function PaymentPage() {

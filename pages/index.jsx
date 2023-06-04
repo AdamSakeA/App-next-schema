@@ -1,4 +1,4 @@
-import { Layout } from "@/src/components";
+import { Layout, Loading } from "@/src/components";
 import { Home } from "@/src/containers";
 
 export default function HomePage() {

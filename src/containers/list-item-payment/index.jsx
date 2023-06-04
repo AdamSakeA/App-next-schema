@@ -1,6 +1,6 @@
 import { CardItemPayment } from "@/src/components";
 import { Container } from "./list-item-payment.styles";
-import { useTotal } from "@/src/utils/hooks";
+import { useTotal } from "@/src/hooks";
 
 export default function ListItemPayment({ payload }) {
   const { totalPrice } = useTotal(payload);

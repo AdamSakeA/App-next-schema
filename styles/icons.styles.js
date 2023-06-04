@@ -6,24 +6,23 @@ import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import { TiPlus, TiMinus } from "react-icons/ti";
 
 export const IconCart = styled(FiShoppingCart)`
-  font-size: 30px;
+  font-size: 18px;
   background-color: ${(props) => props.theme.colors.bgRedSecond};
   padding: 10px 15px;
   color: white;
   border-radius: 10px;
-  cursor: pointer;
 `;
 
 export const IconSate = styled(MdOutlineFoodBank)`
-  font-size: 40px;
+  font-size: 24px;
 `;
 
 export const IconMinuman = styled(MdOutlineEmojiFoodBeverage)`
-  font-size: 40px;
+  font-size: 24px;
 `;
 
 export const IconPaket = styled(IoFastFoodOutline)`
-  font-size: 40px;
+  font-size: 24px;
 `;
 
 export const IconArrowCart = styled(FiArrowRight)`
@@ -59,9 +58,10 @@ export const IconPlus = styled(TiPlus)`
   background-color: white;
   cursor: pointer;
   border-radius: 100%;
-  color: ${(props) => props.theme.colors.bgRedSecond};
   padding: 5px;
   text-align: center;
+  color: white;
+  background-color: ${(props) => props.theme.colors.bgRedSecond};
 `;
 
 export const IconMin = styled(TiMinus)`
@@ -69,7 +69,8 @@ export const IconMin = styled(TiMinus)`
   background-color: white;
   cursor: pointer;
   border-radius: 100%;
-  color: ${(props) => props.theme.colors.bgRedSecond};
   padding: 5px;
   text-align: center;
+  color: white;
+  background-color: ${(props) => props.theme.colors.bgRedSecond};
 `;
