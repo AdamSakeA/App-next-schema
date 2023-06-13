@@ -1,10 +1,10 @@
 import React from "react";
-import { FooterContainer } from "./footer.styles";
+import styles from "./footer.module.scss";
 
 export default function Footer() {
   return (
-    <FooterContainer>
+    <div className={styles.footer}>
       <h3>Sate Taichan Bu Cin</h3>
-    </FooterContainer>
+    </div>
   );
 }

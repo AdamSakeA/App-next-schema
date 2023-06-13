@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { ListItemProducts, ListTypeProducts, Cart } from "..";
 import {
-  Container,
-  ProductContainer,
-  TypesContainer,
-  ShopContainer,
-} from "./list-products.styles";
-import {
   CardTitleProductSkeleton,
   CardProductSkeleton,
 } from "@/src/components";
+import styles from "./list-products.module.scss";
 
 export default function ListProducts({ payload, isLoading }) {
   const [productFiltered, setProductFiltered] = useState({
@@ -40,14 +35,14 @@ export default function ListProducts({ payload, isLoading }) {
   );
 
   return (
-    <Container>
+    <div className={styles.list_products}>
       {/* left */}
-      <ShopContainer>
-        <TypesContainer>{showTypes}</TypesContainer>
-        <ProductContainer>{showProducts}</ProductContainer>
-      </ShopContainer>
+      <div className={styles.list_products__shop}>
+        <div className={styles.list_products__types}>{showTypes}</div>
+        <div className={styles.list_products__product}>{showProducts}</div>
+      </div>
       {/* right */}
       <Cart productCart={productCart} setProductCart={setProductCart} />
-    </Container>
+    </div>
   );
 }

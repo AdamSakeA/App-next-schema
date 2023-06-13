@@ -1,20 +1,20 @@
 import Image from "next/image";
-import { CardItem, Body } from "./card-item-payment.styles";
+import styles from "./card-item-payment.module.scss";
 
 export default function CardItemPayment({ item }) {
   return (
-    <CardItem>
+    <div className={styles.card_item__payment}>
       <Image
-        className="image-card-item__payment"
+        className={styles.card_item__image}
         src={item.image}
         alt={item.title}
         width={150}
         height={150}
       />
-      <Body>
-        <h1 className="title-card__payment">{item.title}</h1>
-        <p className="desc-card__payment">Jumlah : {item.quantity}</p>
-      </Body>
-    </CardItem>
+      <div>
+        <h1 className={styles.card_item__title}>{item.title}</h1>
+        <p className={styles.card_item__desc}>Jumlah : {item.quantity}</p>
+      </div>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Input, Container, Contents, TextArea } from "./text-input.styles";
+import styles from "./text-input.module.scss";
 
 export default function TextInput(props) {
   const {
@@ -16,25 +16,26 @@ export default function TextInput(props) {
 
   if (type === "textarea") {
     return (
-      <Container>
+      <div className={styles.text_input}>
         <label htmlFor={id}>{label} :</label>
-        <TextArea
+        <textarea
           id={id}
           name={name}
           value={value}
           onChange={onChange}
           required={required}
           pattern={pattern}
+          className={styles.text_input__textarea}
         />
-      </Container>
+      </div>
     );
   }
 
   return (
-    <Container>
-      <Contents>
+    <div className={styles.text_input}>
+      <div className={styles.text_input__contents}>
         <label htmlFor={id}>{label} :</label>
-        <Input
+        <input
           id={id}
           name={name}
           value={value}
@@ -42,9 +43,10 @@ export default function TextInput(props) {
           required={required}
           pattern={pattern}
           placeholder={placeholder}
+          className={styles.text_input__input}
         />
-      </Contents>
-      <p className="input-error">{errors}</p>
-    </Container>
+      </div>
+      <p className={styles.text_input__error}>{errors}</p>
+    </div>
   );
 }

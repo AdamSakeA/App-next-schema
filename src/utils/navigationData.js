@@ -4,7 +4,7 @@ const navigationData = [
     url: "/",
   },
   {
-    name: "Produk",
+    name: "Menu",
     url: "/products",
   },
   {

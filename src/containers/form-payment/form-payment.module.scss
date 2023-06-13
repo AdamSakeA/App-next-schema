@@ -1,0 +1,33 @@
+@import "@/styles/settings/__settings";
+
+.form_payment {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: space-between;
+  color: $bgGrey;
+}
+
+.form_payment__content {
+  display: flex;
+}
+
+.form_payment__form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 3;
+}
+
+.form_payment__image {
+  flex: 7;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.form_payment__button {
+  display: flex;
+  gap: 30px;
+}

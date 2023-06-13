@@ -6,9 +6,9 @@ import { whatsappMessage } from "@/src/utils";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 // component
-import { ButtonPrimary, ButtonSecondary, TextInput } from "@/src/components";
+import { Button, TextInput } from "@/src/components";
 // style
-import { Container, Contents, ButtonContainer } from "./form-payment.styles";
+import styles from "./form-payment.module.scss";
 
 const dataInit = [
   { label: "Nama", id: "name", placeholder: "Masukkan nama..." },
@@ -66,31 +66,31 @@ export default function FormPayment({ productCart }) {
   });
 
   return (
-    <Container>
+    <div className={styles.form_payment}>
       <h1>Form Pembelian</h1>
-      <Contents>
-        <form onSubmit={formik.handleSubmit}>
+      <div className={styles.form_payment__content}>
+        <form
+          className={styles.form_payment__form}
+          onSubmit={formik.handleSubmit}
+        >
           {displayForm}
-          <ButtonContainer>
-            <ButtonPrimary
-              type="submit"
-              disabled={formik.isValid ? false : true}
-            >
+          <div className={styles.form_payment__button}>
+            <Button type="submit" disabled={formik.isValid ? false : true}>
               Bayar
-            </ButtonPrimary>
-            <ButtonSecondary onClick={() => handleCanceledOrder()}>
+            </Button>
+            <Button styled="secondary" onClick={() => handleCanceledOrder()}>
               Batal
-            </ButtonSecondary>
-          </ButtonContainer>
+            </Button>
+          </div>
         </form>
         <Image
-          className="form__image"
+          className={styles.form_payment__image}
           src={"/imgs/form.svg"}
           alt="form-img"
           width={590}
           height={590}
         />
-      </Contents>
-    </Container>
+      </div>
+    </div>
   );
 }

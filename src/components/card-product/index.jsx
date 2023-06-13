@@ -1,7 +1,6 @@
-import { IconCart } from "@/styles/icons.styles";
-import { Card, Content } from "./card-product.styles";
 import { priceFormatted } from "@/src/utils";
 import Image from "next/image";
+import styles from "./card-product.module.scss";
 
 export default function CardProduct({ product, productCart, setProductCart }) {
   const addToCart = (product) => {
@@ -21,20 +20,21 @@ export default function CardProduct({ product, productCart, setProductCart }) {
   };
 
   return (
-    <Card onClick={() => addToCart(product)}>
+    <div className={styles.card_product} onClick={() => addToCart(product)}>
       <Image
-        className="image-card__product"
+        className={styles.card_product__image}
         src={product.image}
         alt={product.title}
-        width={200}
-        height={200}
+        width={100}
+        height={150}
       />
-      <IconCart className="icon-cart__product" />
-      <Content>
-        <h2 className="title-card">{product.title}</h2>
-        <p className="desc-card">{product.desc}</p>
-        <h3 className="price-card">Rp.{priceFormatted(product.price)}</h3>
-      </Content>
-    </Card>
+      <div className={styles.card_product__content}>
+        <h2 className={styles.card_product__title}>{product.title}</h2>
+        <p className={styles.card_product__desc}>{product.desc}</p>
+        <h3 className={styles.card_product__price}>
+          Rp.{priceFormatted(product.price)}
+        </h3>
+      </div>
+    </div>
   );
 }

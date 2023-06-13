@@ -3,7 +3,7 @@ import Head from "next/head";
 import { navigationData } from "@/src/utils";
 import { Navigation, Footer } from "..";
 
-export default function Layout({ title, children, active = "" }) {
+export default function Layout({ title, children }) {
   return (
     <>
       <Head>
@@ -11,7 +11,7 @@ export default function Layout({ title, children, active = "" }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/imgs/sate-erik-bg.png" />
       </Head>
-      <Navigation navLink={navigationData} active={active} />
+      <Navigation navLink={navigationData} />
       <main>{children}</main>
       <Footer />
     </>

@@ -1,6 +1,6 @@
 import { CardItemPayment } from "@/src/components";
-import { Container } from "./list-item-payment.styles";
 import { useTotal } from "@/src/hooks";
+import styles from "./list-item-payment.module.scss";
 
 export default function ListItemPayment({ payload }) {
   const { totalPrice } = useTotal(payload);
@@ -9,9 +9,9 @@ export default function ListItemPayment({ payload }) {
   ));
 
   return (
-    <Container>
-      <div className="list-item__card">{cardPayment}</div>
+    <div className={styles.list_item}>
+      <div className={styles.list_item__card}>{cardPayment}</div>
       <h2>Total Rp.{totalPrice} </h2>
-    </Container>
+    </div>
   );
 }

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Layout } from "@/src/components";
-import { Desc, Wrapper, Title } from "@/styles/payment-page/payment.styles";
 import { FormPayment, ListItemPayment } from "@/src/containers";
 import { useStorage } from "@/src/hooks";
 import { useState, useEffect } from "react";
+import styles from "./payment.module.scss";
 
 export default function PaymentPage() {
   const storage = useStorage();
@@ -17,13 +17,13 @@ export default function PaymentPage() {
 
   return (
     <Layout title="Payment Page" active="Products">
-      <Wrapper>
-        <Title>Pembayaran</Title>
-        <Desc>
+      <div className={styles.payment__wrapper}>
+        <h1 className={styles.payment__title}>Pembayaran</h1>
+        <p className={styles.payment__desc}>
           Perhatikan kembali pesanan karena pesanan yang sudah di pesan tidak
           bisa dibatalkan
-        </Desc>
-      </Wrapper>
+        </p>
+      </div>
       <ListItemPayment payload={productCart} />
       <FormPayment productCart={productCart} />
     </Layout>
