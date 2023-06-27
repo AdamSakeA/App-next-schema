@@ -1,7 +1,7 @@
 import Head from "next/head";
-
 import { navigationData } from "@/src/utils";
 import { Navigation, Footer } from "..";
+import styles from "./layout.module.scss";
 
 export default function Layout({ title, children }) {
   return (
@@ -12,7 +12,7 @@ export default function Layout({ title, children }) {
         <link rel="icon" href="/imgs/sate-erik-bg.png" />
       </Head>
       <Navigation navLink={navigationData} />
-      <main>{children}</main>
+      <main className={styles.layout}>{children}</main>
       <Footer />
     </>
   );

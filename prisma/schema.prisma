@@ -10,32 +10,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Makanan {
-  id String @id @default(uuid())
-  title String
-  price Int
-  desc String
-  image String
+model Kategori {
+  id        String    @id @default(uuid())
+  title     String
   createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt
+  products  Product[]
 }
 
-model Minuman {
-  id String @id @default(uuid())
-  title String
-  price Int
-  desc String
-  image String
+model Product {
+  id        String   @id @default(uuid())
+  title     String
+  price     Int
+  desc      String
+  image     String
   createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt
+  kategori  Kategori @relation(fields: [kategoriId], references: [id])
+  kategoriId String
 }
 
-model Paket {
-  id String @id @default(uuid())
-  title String
-  price Int
-  desc String
-  image String
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-}
+// model Makanan {
+//   id        String    @id @default(uuid())
+//   title     String
+//   price     Int
+//   desc      String
+//   image     String
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime  @updatedAt
+//   kategori  Kategori? @relation(fields: [kategoriId], references: [id])
+//   kategoriId String?
+// }
+
+// model Minuman {
+//   id        String    @id @default(uuid())
+//   title     String
+//   price     Int
+//   desc      String
+//   image     String
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime  @updatedAt
+//   kategori  Kategori? @relation(fields: [kategoriId], references: [id])
+//   kategoriId String?
+// }
+
+// model Paket {
+//   id        String    @id @default(uuid())
+//   title     String
+//   price     Int
+//   desc      String
+//   image     String
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime  @updatedAt
+//   kategori  Kategori? @relation(fields: [kategoriId], references: [id])
+//   kategoriId String?
+// }
+
+// model Kategori {
+//   id        String    @id @default(uuid())
+//   title     String
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime  @updatedAt
+//   makanan   Makanan[]
+//   minuman   Minuman[]
+//   paket     Paket[]
+// }

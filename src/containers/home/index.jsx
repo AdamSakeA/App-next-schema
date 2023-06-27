@@ -5,8 +5,10 @@ import { useRouter } from "next/router";
 import styles from "./home.module.scss";
 // component
 import { Button } from "@/src/components";
+import useGetAllCategories from "@/src/hooks/useGetAllCategories";
 
 export default function Home() {
+  const { categories } = useGetAllCategories();
   const router = useRouter();
 
   const onNavigateTo = (url) => {

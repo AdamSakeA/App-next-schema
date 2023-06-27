@@ -16,14 +16,18 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  flex: 3;
+  width: 100%;
+  @media (min-width: 768px) {
+    flex: 3;
+  }
 }
 
 .form_payment__image {
-  flex: 7;
+  width: 50%;
   display: none;
   @media (min-width: 768px) {
     display: block;
+    flex: 7;
   }
 }
 
