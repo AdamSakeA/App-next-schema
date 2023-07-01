@@ -3,6 +3,7 @@ const path = require("path");
 
 const nextConfig = {
   reactStrictMode: true,
+  env: { NEXTAUTH_URL: "https://app-next-schema.vercel.app" },
   images: {
     domains: ["raw.githubusercontent.com", "i.ibb.co"],
   },
