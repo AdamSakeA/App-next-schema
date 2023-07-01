@@ -18,13 +18,13 @@ export default function CardCartProduct({ cart, updateCart }) {
 
   return (
     <div className={styles.card_cart}>
-      <Image
+      {/* <Image
         src={cart.image}
         alt={cart.title}
         className={styles.card_cart__image}
         width={80}
         height={80}
-      />
+      /> */}
       <div className={styles.card_cart__content}>
         <h2 className={styles.card_cart__title}>{cart.title}</h2>
         <div className={styles.card_cart__body}>

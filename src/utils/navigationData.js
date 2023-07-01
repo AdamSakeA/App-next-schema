@@ -4,7 +4,7 @@ const navigationData = [
     url: "/",
   },
   {
-    name: "Menu",
+    name: "Produk",
     url: "/products",
   },
   {
@@ -12,9 +12,14 @@ const navigationData = [
     url: "/about",
   },
   {
-    name: "Cara Pembayaran",
+    name: "Tata Cara Pembayaran",
     url: "/howtopay",
   },
 ];
 
-export default navigationData;
+const navigationAdmin = {
+  name: "Dashboard Admin",
+  url: "/admin/dashboard",
+};
+
+export { navigationData, navigationAdmin };

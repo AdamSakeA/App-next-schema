@@ -1,45 +1,33 @@
 import { useState } from "react";
-import { ListItemProducts, ListTypeProducts, Cart } from "..";
-import {
-  CardTitleProductSkeleton,
-  CardProductSkeleton,
-} from "@/src/components";
+import { ListItemProducts, Cart } from "..";
+import { CardTitleProduct } from "@/src/components";
 import styles from "./list-products.module.scss";
 
-export default function ListProducts({ payload, isLoading }) {
-  const [productFiltered, setProductFiltered] = useState({
-    name: payload[0]?.name,
-    data: payload[0]?.data,
-  });
-
+export default function ListProducts({ payload }) {
   const [productCart, setProductCart] = useState([]);
+  const [category, setCategory] = useState("sate_taichan");
 
-  const showTypes = isLoading ? (
-    <CardTitleProductSkeleton />
-  ) : (
-    <ListTypeProducts
-      data={payload}
-      productFiltered={productFiltered}
-      setProductFiltered={setProductFiltered}
+  const navigationProducts = payload?.map((item, i) => (
+    <CardTitleProduct
+      data={item}
+      key={i}
+      category={category}
+      setCategory={setCategory}
     />
-  );
-
-  const showProducts = isLoading ? (
-    <CardProductSkeleton />
-  ) : (
-    <ListItemProducts
-      products={productFiltered.data}
-      productCart={productCart}
-      setProductCart={setProductCart}
-    />
-  );
+  ));
 
   return (
     <div className={styles.list_products}>
       {/* left */}
       <div className={styles.list_products__shop}>
-        <div className={styles.list_products__types}>{showTypes}</div>
-        <div className={styles.list_products__product}>{showProducts}</div>
+        <div className={styles.list_products__types}>{navigationProducts}</div>
+        <div className={styles.list_products__product}>
+          <ListItemProducts
+            category={category}
+            productCart={productCart}
+            setProductCart={setProductCart}
+          />
+        </div>
       </div>
       {/* right */}
       <Cart productCart={productCart} setProductCart={setProductCart} />

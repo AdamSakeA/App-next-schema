@@ -5,7 +5,7 @@ import { ListCart } from "..";
 import { BiCart as IconCart } from "react-icons/bi";
 import styles from "./cart.module.scss";
 
-export default function Cart({ productCart, setProductCart }) {
+export default function Cart({ productCart = [], setProductCart }) {
   const { totalOrdered, totalPrice } = useTotal(productCart);
   const storage = useStorage();
   const router = useRouter();

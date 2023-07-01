@@ -1,0 +1,12 @@
+@import "@/styles/settings/__settings";
+
+.list_category__admin {
+  flex: 1.5;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

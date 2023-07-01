@@ -34,7 +34,7 @@ export default function TextInput(props) {
   return (
     <div className={styles.text_input}>
       <div className={styles.text_input__contents}>
-        <label htmlFor={id}>{label} :</label>
+        <label htmlFor={id}>{label}</label>
         <input
           id={id}
           name={name}

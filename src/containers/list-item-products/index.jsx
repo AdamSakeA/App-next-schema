@@ -1,8 +1,16 @@
-import { CardProduct } from "@/src/components";
+import { CardProduct, CardProductSkeleton } from "@/src/components";
+import useGetProductsByCategory from "@/src/hooks/useGetProductsByCategory";
 
 export default function ListItemProducts(props) {
-  const { products, productCart, setProductCart } = props;
-  const showProduct = products.map((item, i) => (
+  const { category, setProductCart, productCart } = props;
+
+  const { products, isLoading } = useGetProductsByCategory(
+    `/categories/${category}`,
+    category
+  );
+  if (isLoading) return <CardProductSkeleton />;
+
+  const showProduct = products.results.products.map((item, i) => (
     <CardProduct
       key={i}
       product={item}

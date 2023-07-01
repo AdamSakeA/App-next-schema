@@ -7,7 +7,6 @@ import CardCartProduct from "./card-cart-product";
 import CardItemPayment from "./card-item-payment";
 import CardTitleProduct from "./card-title-product";
 import TextInput from "./text-input";
-import Loading from "./loading";
 import CardProductSkeleton from "./card-product-skeleton";
 import CardTitleProductSkeleton from "./card-title-product-skeleton";
 
@@ -23,7 +22,6 @@ export {
   CardItemPayment,
   CardTitleProduct,
   TextInput,
-  Loading,
   CardProductSkeleton,
   CardTitleProductSkeleton,
 };

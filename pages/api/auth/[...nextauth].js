@@ -16,6 +16,13 @@ const users = [
     username: "johndoe",
     password: "password2",
   },
+  {
+    id: "3",
+    name: "Admin",
+    email: "admin@mail.com",
+    username: "Admin Sate",
+    password: "superadmin!",
+  },
 ];
 
 const authOptions = {
@@ -29,19 +36,20 @@ const authOptions = {
       authorize(credentials, req) {
         const { email, password } = credentials;
 
-        const user = users.find(
-          (user) => user.email === email && user.password === password
-        );
+        const userEmail = users.find((user) => user.email === email);
+        const userPassword = userEmail
+          ? userEmail.password === password
+          : false;
 
-        if (!user || user.password !== password) {
-          throw new Error("Invalid password");
-        }
-
-        if (!user || user.email !== email) {
+        if (userEmail === undefined) {
           throw new Error("Invalid Email");
         }
 
-        return user;
+        if (userPassword === false) {
+          throw new Error("Invalid password");
+        }
+
+        return userEmail;
       },
     }),
   ],
