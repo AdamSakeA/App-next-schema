@@ -36,20 +36,26 @@ const authOptions = {
       authorize(credentials, req) {
         const { email, password } = credentials;
 
-        const userEmail = users.find((user) => user.email === email);
-        const userPassword = userEmail
-          ? userEmail.password === password
-          : false;
+        const user = users.find(
+          (user) => user.email === email
+          // && user.password === password
+        );
 
-        if (userEmail === undefined) {
+        if (user === undefined) {
           throw new Error("Invalid Email");
         }
-
-        if (userPassword === false) {
-          throw new Error("Invalid password");
+        if (user.password !== password) {
+          throw new Error("Invalid Password");
         }
+        // if (!user && user.email !== email) {
+        //   throw new Error("Invalid Email");
+        // }
 
-        return userEmail;
+        // if (!user && user.password !== password) {
+        //   throw new Error("Invalid password");
+        // }
+
+        return user;
       },
     }),
   ],

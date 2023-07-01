@@ -10,7 +10,7 @@ export default function ListItemProducts(props) {
   );
   if (isLoading) return <CardProductSkeleton />;
 
-  const showProduct = products.results.products.map((item, i) => (
+  const showProduct = products?.results?.products?.map((item, i) => (
     <CardProduct
       key={i}
       product={item}

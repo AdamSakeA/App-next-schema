@@ -9,8 +9,8 @@ export default function ListProducts({ payload }) {
 
   const navigationProducts = payload?.map((item, i) => (
     <CardTitleProduct
-      data={item}
       key={i}
+      data={item}
       category={category}
       setCategory={setCategory}
     />

@@ -12,7 +12,7 @@ import styles from "./dashboard.module.scss";
 
 export default function AdminDashboardPage() {
   const { data, status } = useSession();
-  const { categories } = useGetAllCategories(`/admin/categories`);
+  const { categories } = useGetAllCategories();
   const [selectedCategory, setSelectedCategory] = useState("sate_taichan");
   const { products } = useGetProductsByCategory(
     `/admin/${selectedCategory}`,
@@ -25,7 +25,13 @@ export default function AdminDashboardPage() {
   }, [data, status]);
 
   if (status === "loading") return <h1>Loading...</h1>;
-
+  if (status === "unauthenticated") {
+    return (
+      <Layout title={"Dashboard Admin"}>
+        <h1>Harap login terlebih dahulu!</h1>
+      </Layout>
+    );
+  }
   return (
     <Layout title={"Dashboard Admin"}>
       {toggleCreateProduct && (

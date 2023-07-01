@@ -24,9 +24,9 @@ const SignIn = () => {
     if (res?.ok) {
       router.push("/admin/dashboard");
     } else {
-      if (res?.error === "Invalid password") {
+      if (res?.error === "Invalid Password") {
         setErrorMessage({ email: "", password: "Password salah" });
-      } else {
+      } else if (res?.error === "Invalid Email") {
         setErrorMessage({ email: "Email tidak terdaftar", password: "" });
       }
       console.error(res?.error);

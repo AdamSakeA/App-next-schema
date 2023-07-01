@@ -12,16 +12,13 @@ export default function ListCategoryAdmin({ categories, setSelectedCategory }) {
     <div>
       <h3>Category</h3>
       <div className={styles.list_category__admin}>
+        {!categories && <p>Loading..</p>}
         {categories?.map((item, i) => {
           return (
             <div key={i}>
-              {!categories ? (
-                <p>Loading..</p>
-              ) : (
-                <p onClick={() => selectedCategory(item.title)}>
-                  {formattedText(item.title)}
-                </p>
-              )}
+              <p onClick={() => selectedCategory(item.title)}>
+                {formattedText(item.title)}
+              </p>
             </div>
           );
         })}

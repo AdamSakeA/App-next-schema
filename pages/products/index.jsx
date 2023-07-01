@@ -4,7 +4,8 @@ import styles from "./products.module.scss";
 import { useGetAllCategories } from "@/src/hooks";
 
 export default function ProductsPage() {
-  const { categories, isLoading } = useGetAllCategories(`/categories`);
+  const { categories, isLoading } = useGetAllCategories();
+
   return (
     <Layout title="Products Page" active="Products">
       <div className={styles.products__wrapper}>
