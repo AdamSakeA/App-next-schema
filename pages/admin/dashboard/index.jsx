@@ -14,7 +14,8 @@ export default function AdminDashboardPage() {
   const { data, status } = useSession();
   const { categories } = useGetAllCategories();
   const [selectedCategory, setSelectedCategory] = useState("sate_taichan");
-  const { products } = useGetProductsByCategory(
+  const [message, setMessage] = useState();
+  const { products, refetch, isRefetching } = useGetProductsByCategory(
     `/admin/${selectedCategory}`,
     selectedCategory
   );
@@ -32,16 +33,20 @@ export default function AdminDashboardPage() {
       </Layout>
     );
   }
+
   return (
     <Layout title={"Dashboard Admin"}>
       {toggleCreateProduct && (
         <PopupCreateProduct
           toggle={setToggleCreateProduct}
           category={categories}
+          setMessage={setMessage}
+          refetch={refetch}
         />
       )}
       <div className={styles.admin_data}>
         <h1>Welcome back, {data?.user?.name}</h1>
+        <h1 onClick={() => setMessage("")}>{message}</h1>
         <div className={styles.admin_data__data}>
           <ListCategoryAdmin
             categories={categories}
@@ -50,6 +55,9 @@ export default function AdminDashboardPage() {
           <TableAdmin
             data={products?.results?.products}
             toggle={setToggleCreateProduct}
+            refetch={refetch}
+            isRefetching={isRefetching}
+            setMessage={setMessage}
           />
         </div>
       </div>

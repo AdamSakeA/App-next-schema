@@ -11,7 +11,10 @@
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   z-index: 100;
-  @media (min-width: 790px) {
+  @media (min-width: 790px) and (max-width: 1024px) {
+    padding: 30px 20px;
+  }
+  @media (min-width: 1025px) {
     padding: 30px 100px;
   }
 }
@@ -34,19 +37,15 @@
   align-items: flex-start;
   padding: 100px 0;
   @media (min-width: 1024px) {
-    width: auto;
-    position: static;
-    flex-direction: row;
-    gap: 50px;
-    padding: 0;
-    align-items: center;
+    display: none;
   }
 }
 
 .navbar_contents__link {
   color: $bgGrey;
   text-decoration: none;
-  font-size: $subHead;
+  font-size: $body;
+  font-weight: bold;
   transition: 0.2s all ease-in-out;
   margin-bottom: 10px;
   padding: 10px 20px;
@@ -67,19 +66,59 @@
 }
 
 .navbar_contents__button {
-  font-size: $body;
+  font-size: $captions;
   margin: 10px 20px;
   @media (min-width: 1024px) {
+    font-size: $captions;
     margin: 0;
   }
 }
 
+// desktop
+.navbar_desktop {
+  display: none;
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+}
+
+.desktop_dropdown {
+  display: none;
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    top: 70px;
+    gap: 30px;
+    background-color: white;
+    padding: 20px;
+    left: 82%;
+  }
+}
+
+.desktop_has_signin {
+  display: none;
+  @media (min-width: 1024px) {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// utils
 .icon__toggle_bar {
   color: $bgGrey;
   display: flex;
   place-items: center;
   font-size: $head;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    display: none;
+  }
 }
 
 .icon__toggle_closed {
@@ -88,8 +127,16 @@
   place-items: center;
   font-size: $head;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    display: none;
+  }
 }
 
 .active {
   color: $bgRedPrimary;
+}
+
+.dropdown_content {
+  display: flex;
+  flex-direction: column;
 }

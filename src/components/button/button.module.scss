@@ -1,11 +1,11 @@
 @import "@/styles/settings/__settings";
 
 .primary {
-  @include buttons(white, $bgRedSecond, $subHead);
+  @include buttons(white, $bgRedSecond);
 }
 
 .secondary {
-  @include buttons($bgRedSecond, white, $subHead);
+  @include buttons($bgRedSecond, white);
   border: 1px solid $bgRedSecond;
   &:not(:disabled):hover {
     background-color: $bgRedSecond;

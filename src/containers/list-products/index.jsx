@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ListItemProducts, Cart } from "..";
-import { CardTitleProduct } from "@/src/components";
+import { CardTitleProduct, CardTitleProductSkeleton } from "@/src/components";
 import styles from "./list-products.module.scss";
 
-export default function ListProducts({ payload }) {
+export default function ListProducts({ payload, isLoading }) {
   const [productCart, setProductCart] = useState([]);
   const [category, setCategory] = useState("sate_taichan");
 
@@ -20,7 +20,10 @@ export default function ListProducts({ payload }) {
     <div className={styles.list_products}>
       {/* left */}
       <div className={styles.list_products__shop}>
-        <div className={styles.list_products__types}>{navigationProducts}</div>
+        <div className={styles.list_products__types}>
+          {isLoading && <CardTitleProductSkeleton />}
+          {navigationProducts}
+        </div>
         <div className={styles.list_products__product}>
           <ListItemProducts
             category={category}

@@ -1,11 +1,10 @@
-@mixin buttons($color, $backgroundColor, $fontSize) {
+@mixin buttons($color, $backgroundColor) {
   background-color: $backgroundColor;
   color: $color;
   border: none;
   cursor: pointer;
   padding: 10px 30px;
   border-radius: 20px;
-  font-size: $fontSize;
   font-weight: 600;
   &:disabled {
     background-color: #969696;

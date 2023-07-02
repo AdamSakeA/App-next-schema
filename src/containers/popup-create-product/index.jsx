@@ -1,17 +1,21 @@
-import React from "react";
 import styles from "./popup-create-product.module.scss";
+import { formattedText } from "@/src/utils";
 import { useState, useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
-import axios from "axios";
-import formattedText from "@/src/utils/formattedText";
+import { useMutation } from "@tanstack/react-query";
+import { createProduct } from "@/src/services/api";
 
-export default function PopupCreateProduct({ toggle, category }) {
+export default function PopupCreateProduct(props) {
+  const { toggle, category, setMessage, refetch } = props;
   const [formData, setFormData] = useState({
     title: "",
     price: "",
     desc: "",
     kategoriId: "",
   });
+  const { mutate, isLoading } = useMutation((formData) =>
+    createProduct(formData)
+  );
 
   const imageRef = useRef(null);
 
@@ -23,7 +27,7 @@ export default function PopupCreateProduct({ toggle, category }) {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
@@ -42,21 +46,31 @@ export default function PopupCreateProduct({ toggle, category }) {
     newFormData.append("desc", formData.desc);
     newFormData.append("kategoriId", formData.kategoriId);
 
-    try {
-      const response = await axios.post("/api/products", newFormData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      const { status, data } = response.data;
-      if (status === "Success") {
-        console.log("Product created:", data);
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
+    mutate(newFormData, {
+      onSuccess: async () => {
+        refetch();
+        setMessage("Product successfully created");
+      },
+      onError: (error) => {
+        console.error("Error uploading image:", error);
+      },
+      onSettled: () => {
+        toggle(false);
+      },
+    });
   };
+
+  if (isLoading) {
+    return (
+      <div className={styles.popup_create}>
+        <div className={styles.popup_content}>
+          <h4 className={styles.popup_form__header}>
+            Please wait, product is creating...
+          </h4>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.popup_create}>
@@ -68,60 +82,58 @@ export default function PopupCreateProduct({ toggle, category }) {
             onClick={() => toggle((prevState) => !prevState)}
           />
         </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Title:</label>
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Price:</label>
-              <input
-                type="number"
-                name="price"
-                value={formData.price}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Description:</label>
-              <textarea
-                name="desc"
-                value={formData.desc}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Image:</label>
-              <input type="file" accept="image/*" ref={imageRef} />
-            </div>
-            <div>
-              <label>Kategori</label>
-              <select
-                value={formData.kategoriId}
-                name="kategoriId"
-                onChange={handleInputChange}
-              >
-                <option value="">Select an option</option>
-                {category ? (
-                  category.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {formattedText(item.title)}
-                    </option>
-                  ))
-                ) : (
-                  <option>Loading categories...</option>
-                )}
-              </select>
-            </div>
-            <button type="submit">Upload</button>
-          </form>
-        </div>
+        <form className={styles.popup_form} onSubmit={handleSubmit}>
+          <div className={styles.popup_form__content}>
+            <label className={styles.popup_form__header}>Title</label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.popup_form__content}>
+            <label className={styles.popup_form__header}>Price</label>
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.popup_form__content}>
+            <label className={styles.popup_form__header}>Description</label>
+            <textarea
+              name="desc"
+              value={formData.desc}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.popup_form__content}>
+            <label className={styles.popup_form__header}>Image</label>
+            <input type="file" accept="image/*" ref={imageRef} />
+          </div>
+          <div className={styles.popup_form__content}>
+            <label className={styles.popup_form__header}>Kategori</label>
+            <select
+              value={formData.kategoriId}
+              name="kategoriId"
+              onChange={handleInputChange}
+            >
+              <option value="">Select an option</option>
+              {category ? (
+                category.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {formattedText(item.title)}
+                  </option>
+                ))
+              ) : (
+                <option>Loading categories...</option>
+              )}
+            </select>
+          </div>
+          <button type="submit">Upload</button>
+        </form>
       </div>
     </div>
   );

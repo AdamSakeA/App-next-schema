@@ -76,7 +76,7 @@ const SignIn = () => {
               />
             </div>
             <Button className={styles.login__button} type="submit">
-              Login
+              Sign In
             </Button>
           </div>
         </form>

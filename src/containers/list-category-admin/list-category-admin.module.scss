@@ -3,10 +3,24 @@
 .list_category__admin {
   flex: 1.5;
   padding: 20px;
-  border: 1px solid black;
+  border: 1px solid rgb(207, 207, 207);
   border-radius: 10px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.list_category__link {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.list_category__button {
+  font-size: $body;
+  margin-top: 20px;
+}
+
+.active {
+  color: $bgRedPrimary;
 }

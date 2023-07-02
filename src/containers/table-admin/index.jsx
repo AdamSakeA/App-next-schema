@@ -1,37 +1,48 @@
-import React from "react";
+import Link from "next/link";
 import styles from "./table-admin.module.scss";
 import { Button } from "@/src/components";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import { truncateText } from "@/src/utils/truncateText";
+import { RiEdit2Fill, RiDeleteBin6Line, RiRefreshLine } from "react-icons/ri";
+import { deleteProduct } from "@/src/services/api";
 
-export default function TableAdmin({ data, toggle }) {
-  const deleteProduct = useMutation(
-    async (productId) => {
-      const response = await axios.delete(`/api/products/${productId}`);
-      return response.data;
-    },
+export default function TableAdmin(props) {
+  const { data, toggle, refetch, isRefetching, setMessage } = props;
+  const { mutate, isLoading } = useMutation(
+    (productId) => deleteProduct(productId),
     {
-      onSuccess: () => {
-        // Lakukan tindakan sesuai kebutuhan setelah produk berhasil dihapus
-        console.log("Product deleted successfully");
+      onSuccess: async () => {
+        refetch();
+        setMessage("Product deleted successfully");
       },
       onError: (error) => {
-        console.error("Error deleting product:", error);
+        setMessage(`Error deleting product: ${error.message}`);
       },
     }
   );
 
   const handleDelete = (productId) => {
-    deleteProduct.mutate(productId);
+    mutate(productId);
   };
 
   if (!data) return <h1>Loading...</h1>;
 
   return (
     <div className={styles.table_admin__container}>
-      <div>
-        <h3>Dashboard</h3>
-        <Button onClick={() => toggle((prevState) => !prevState)}>
+      <div className={styles.table_admin__header}>
+        <div className={styles.table_header__content}>
+          <h3>Dashboard</h3>
+          <RiRefreshLine
+            onClick={() => refetch()}
+            style={{ cursor: "pointer", fontSize: "20px" }}
+            className={`${isRefetching ? styles.rotate_icon : null}`}
+          />
+          {isLoading && <p>Deleting Products..</p>}
+        </div>
+        <Button
+          className={styles.table_admin__button}
+          onClick={() => toggle((prevState) => !prevState)}
+        >
           Add Product
         </Button>
       </div>
@@ -54,10 +65,17 @@ export default function TableAdmin({ data, toggle }) {
                 <td>{item.title}</td>
                 <td>{item.price}</td>
                 <td>{item.desc}</td>
-                <td>{item.image}</td>
                 <td>
-                  <label>Edit</label>
-                  <label onClick={() => handleDelete(item.id)}>Delete</label>
+                  <Link href={item.image} target="_blank">
+                    {truncateText(item.image, 20)}
+                  </Link>
+                </td>
+                <td className={styles.table_row__controller}>
+                  <RiEdit2Fill className={styles.table_row__icon_edit} />
+                  <RiDeleteBin6Line
+                    className={styles.table_row__icon_delete}
+                    onClick={() => handleDelete(item.id)}
+                  />
                 </td>
               </tr>
             );
