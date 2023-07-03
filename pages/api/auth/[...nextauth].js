@@ -24,6 +24,11 @@ const authOptions = {
           throw new Error("Invalid Password");
         }
 
+        const token = encodeJwt({
+          id: user.id,
+          role: user.role,
+        });
+
         return user;
       },
     }),
