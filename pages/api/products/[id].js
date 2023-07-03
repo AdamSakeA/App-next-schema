@@ -84,24 +84,4 @@ export default async function productById(req, res) {
   } else {
     return res.status(405).json({ error: "Metode HTTP tidak diizinkan" });
   }
-
-  // Handle other HTTP methods (e.g., POST, PUT, DELETE) if needed
-  // ...
-
-  //   return res.status(405).json({ error: "Method Not Allowed" });
-  //   if (req.method === "DELETE") {
-  //     const { id } = req.query;
-
-  //     try {
-  //       const deletedProduct = await prisma.product.delete({
-  //         where: {
-  //           id: id.toString(),
-  //         },
-  //       });
-  //       return res.status(200).json({ status: "Success", data: deletedProduct });
-  //     } catch (error) {
-  //       console.error("Error deleting product:", error);
-  //       return res.status(500).json({ error: "Error deleting product" });
-  //     }
-  //   }
 }

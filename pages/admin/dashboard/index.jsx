@@ -1,31 +1,37 @@
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Layout } from "@/src/components";
+import { useGetAllCategories, useGetProductsByCategory } from "@/src/hooks/";
 import {
   TableAdmin,
   PopupCreateProduct,
   ListCategoryAdmin,
 } from "@/src/containers";
-import { useGetAllCategories, useGetProductsByCategory } from "@/src/hooks/";
 import styles from "./dashboard.module.scss";
 
 export default function AdminDashboardPage() {
-  const { data, status } = useSession();
+  const { data: session, status } = useSession();
   const { categories } = useGetAllCategories();
   const [selectedCategory, setSelectedCategory] = useState("sate_taichan");
   const [message, setMessage] = useState();
   const { products, refetch, isRefetching } = useGetProductsByCategory(
-    `/admin/${selectedCategory}`,
+    `/categories/${selectedCategory}`,
     selectedCategory
   );
   const [toggleCreateProduct, setToggleCreateProduct] = useState(false);
 
-  useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/admin/signin");
-  }, [data, status]);
+  const router = useRouter();
 
-  if (status === "loading") return <h1>Loading...</h1>;
+  useEffect(() => {
+    if (
+      !session ||
+      (session.role !== "admin" && session.role !== "superadmin")
+    ) {
+      router.replace("/admin/signin");
+    }
+  }, [router, session]);
+
   if (status === "unauthenticated") {
     return (
       <Layout title={"Dashboard Admin"}>
@@ -45,7 +51,7 @@ export default function AdminDashboardPage() {
         />
       )}
       <div className={styles.admin_data}>
-        <h1>Welcome back, {data?.user?.name}</h1>
+        <h1>Welcome back, {session?.user?.name}</h1>
         <h1 onClick={() => setMessage("")}>{message}</h1>
         <div className={styles.admin_data__data}>
           <ListCategoryAdmin

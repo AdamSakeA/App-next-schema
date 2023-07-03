@@ -30,48 +30,14 @@ model Product {
   kategoriId String
 }
 
-// model Makanan {
-//   id        String    @id @default(uuid())
-//   title     String
-//   price     Int
-//   desc      String
-//   image     String
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-//   kategori  Kategori? @relation(fields: [kategoriId], references: [id])
-//   kategoriId String?
-// }
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
-// model Minuman {
-//   id        String    @id @default(uuid())
-//   title     String
-//   price     Int
-//   desc      String
-//   image     String
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-//   kategori  Kategori? @relation(fields: [kategoriId], references: [id])
-//   kategoriId String?
-// }
-
-// model Paket {
-//   id        String    @id @default(uuid())
-//   title     String
-//   price     Int
-//   desc      String
-//   image     String
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-//   kategori  Kategori? @relation(fields: [kategoriId], references: [id])
-//   kategoriId String?
-// }
-
-// model Kategori {
-//   id        String    @id @default(uuid())
-//   title     String
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-//   makanan   Makanan[]
-//   minuman   Minuman[]
-//   paket     Paket[]
-// }
