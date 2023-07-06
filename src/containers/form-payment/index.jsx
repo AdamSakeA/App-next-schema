@@ -83,13 +83,6 @@ export default function FormPayment({ productCart }) {
             </Button>
           </div>
         </form>
-        <Image
-          className={styles.form_payment__image}
-          src={"/imgs/form.svg"}
-          alt="form-img"
-          width={590}
-          height={590}
-        />
       </div>
     </div>
   );

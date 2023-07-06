@@ -25,8 +25,9 @@ export default function CardProduct({ product, productCart, setProductCart }) {
         className={styles.card_product__image}
         src={product.image}
         alt={product.title}
-        width={100}
+        width={300}
         height={150}
+        priority
       />
       <div className={styles.card_product__content}>
         <h2 className={styles.card_product__title}>{product.title}</h2>

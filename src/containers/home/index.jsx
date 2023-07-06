@@ -40,7 +40,7 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      <Image src="/imgs/sate-erik-bg.png" alt="test" width={380} height={380} />
+      <Image src="/imgs/LogoSate.svg" alt="test" width={380} height={380} />
     </div>
   );
 }

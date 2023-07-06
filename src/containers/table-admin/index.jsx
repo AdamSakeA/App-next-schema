@@ -3,7 +3,7 @@ import styles from "./table-admin.module.scss";
 import { Button } from "@/src/components";
 import { useMutation } from "@tanstack/react-query";
 import { truncateText } from "@/src/utils/truncateText";
-import { RiEdit2Fill, RiDeleteBin6Line, RiRefreshLine } from "react-icons/ri";
+import { RiDeleteBin6Line, RiRefreshLine } from "react-icons/ri";
 import { deleteProduct } from "@/src/services/api";
 
 export default function TableAdmin(props) {
@@ -13,7 +13,7 @@ export default function TableAdmin(props) {
     {
       onSuccess: async () => {
         refetch();
-        setMessage("Product deleted successfully");
+        setMessage("Product Deleted Successfully");
       },
       onError: (error) => {
         setMessage(`Error deleting product: ${error.message}`);
@@ -71,7 +71,6 @@ export default function TableAdmin(props) {
                   </Link>
                 </td>
                 <td className={styles.table_row__controller}>
-                  <RiEdit2Fill className={styles.table_row__icon_edit} />
                   <RiDeleteBin6Line
                     className={styles.table_row__icon_delete}
                     onClick={() => handleDelete(item.id)}

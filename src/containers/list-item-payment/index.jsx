@@ -10,8 +10,8 @@ export default function ListItemPayment({ payload }) {
 
   return (
     <div className={styles.list_item}>
+      <h2>Total Rp.{totalPrice}</h2>
       <div className={styles.list_item__card}>{cardPayment}</div>
-      <h2>Total Rp.{totalPrice} </h2>
     </div>
   );
 }

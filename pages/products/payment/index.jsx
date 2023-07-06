@@ -24,8 +24,10 @@ export default function PaymentPage() {
           bisa dibatalkan
         </p>
       </div>
-      <ListItemPayment payload={productCart} />
-      <FormPayment productCart={productCart} />
+      <div className={styles.payment__form}>
+        <FormPayment productCart={productCart} />
+        <ListItemPayment payload={productCart} />
+      </div>
     </Layout>
   );
 }

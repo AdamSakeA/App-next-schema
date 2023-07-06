@@ -29,9 +29,6 @@ export default function ListCategoryAdmin({ categories, setSelectedCategory }) {
             </div>
           );
         })}
-        <Button styled="secondary" className={styles.list_category__button}>
-          Add Category +
-        </Button>
       </div>
     </div>
   );

@@ -5,12 +5,13 @@
   color: $bgGrey;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 30px;
+  flex: 5;
 }
 
 .list_item__card {
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 }

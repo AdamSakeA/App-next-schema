@@ -9,6 +9,7 @@ import {
   ListCategoryAdmin,
 } from "@/src/containers";
 import styles from "./dashboard.module.scss";
+import MessageAlert from "@/src/components/message-alert";
 
 export default function AdminDashboardPage() {
   const { data: session, status } = useSession();
@@ -24,10 +25,7 @@ export default function AdminDashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (
-      !session ||
-      (session.role !== "admin" && session.role !== "superadmin")
-    ) {
+    if (!session && session?.role !== "admin") {
       router.replace("/admin/signin");
     }
   }, [router, session]);
@@ -39,6 +37,26 @@ export default function AdminDashboardPage() {
       </Layout>
     );
   }
+
+  const Alert = () => {
+    if (message?.includes("Success") || message?.includes("Successfully")) {
+      return (
+        <MessageAlert
+          type={"success"}
+          message={message}
+          onClick={() => setMessage("")}
+        />
+      );
+    } else if (message?.includes("Error")) {
+      return (
+        <MessageAlert
+          type={"error"}
+          message={message}
+          onClick={() => setMessage("")}
+        />
+      );
+    }
+  };
 
   return (
     <Layout title={"Dashboard Admin"}>
@@ -52,7 +70,7 @@ export default function AdminDashboardPage() {
       )}
       <div className={styles.admin_data}>
         <h1>Welcome back, {session?.user?.name}</h1>
-        <h1 onClick={() => setMessage("")}>{message}</h1>
+        {message !== null || message !== "" ? <Alert /> : null}
         <div className={styles.admin_data__data}>
           <ListCategoryAdmin
             categories={categories}
