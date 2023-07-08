@@ -9,7 +9,7 @@ export default function Layout({ title, children }) {
       <Head>
         <title>{`Sate Taichan : ${title}`}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/imgs/sate-erik-bg.png" />
+        <link rel="icon" href="/imgs/LogoSate.svg" />
       </Head>
       <Navigation navLink={navigationData} />
       <main className={styles.layout}>{children}</main>

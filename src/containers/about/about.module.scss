@@ -3,6 +3,10 @@
 .about__wrapper {
   display: flex;
   gap: 30px;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .about__images {
@@ -18,6 +22,10 @@
   -webkit-filter: opacity(0.8) saturate(0);
   filter: opacity(0.8) saturate(0);
   border-radius: 20px;
+}
+
+.about__container {
+  flex: 1;
 }
 
 .about__title {
