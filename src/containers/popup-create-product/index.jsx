@@ -101,7 +101,7 @@ export default function PopupCreateProduct(props) {
           </div>
           <form className={styles.popup_form} onSubmit={handleSubmit}>
             <div className={styles.popup_form__content}>
-              <label className={styles.popup_form__header}>Title</label>
+              <label className={styles.popup_form__header}>Name</label>
               <input
                 type="text"
                 name="title"

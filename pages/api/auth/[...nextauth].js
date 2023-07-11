@@ -17,14 +17,13 @@ const authOptions = {
 
         const user = await findUser(email);
 
-        if (user === undefined) {
+        if (user === null || user === undefined) {
           throw new Error("Invalid Email");
         }
         const passwordHashing = await bcrypt.compare(password, user.password);
         if (!passwordHashing) {
           throw new Error("Invalid Password");
         }
-
         const token = encodeJwt({
           id: user.id,
           role: user.role,
