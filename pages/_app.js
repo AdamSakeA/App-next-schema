@@ -8,14 +8,6 @@ import {
 import { useState } from "react";
 import { SessionProvider } from "next-auth/react";
 
-// const queryClient = new QueryClient({
-//   defaultOptions: {
-//     queries: {
-//       refetchOnWindowFocus: false,
-//     },
-//   },
-// });
-
 export default function App({ Component, pageProps }) {
   const [queryClient] = useState(
     () =>

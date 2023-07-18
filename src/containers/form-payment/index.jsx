@@ -1,4 +1,3 @@
-import Image from "next/image";
 import * as Yup from "yup";
 // utils
 import { whatsappMessage } from "@/src/utils";
@@ -9,6 +8,7 @@ import { useFormik } from "formik";
 import { Button, TextInput } from "@/src/components";
 // style
 import styles from "./form-payment.module.scss";
+import { useTotal } from "@/src/hooks";
 
 const dataInit = [
   { label: "Nama", id: "name", placeholder: "Masukkan nama..." },
@@ -20,6 +20,7 @@ const dataInit = [
 
 export default function FormPayment({ productCart }) {
   const router = useRouter();
+  const { totalPrice } = useTotal(productCart);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -29,7 +30,7 @@ export default function FormPayment({ productCart }) {
       notes: "",
     },
     onSubmit: (values) => {
-      whatsappMessage({ productCart, user: values });
+      whatsappMessage({ productCart, user: values, total: totalPrice });
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Nama harus diisi"),
