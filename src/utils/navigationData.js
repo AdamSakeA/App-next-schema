@@ -12,7 +12,7 @@ const navigationData = [
     url: "/about",
   },
   {
-    name: "Tata Cara Pembayaran",
+    name: "Tata Cara Pembelian",
     url: "/howtopay",
   },
 ];
