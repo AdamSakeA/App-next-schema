@@ -10,9 +10,9 @@ export default function HowToPayPage() {
   return (
     <Layout title="How To Pay" active="How To Pay">
       <div className={styles.howtopay__wrapper}>
-        <h1 className={styles.howtopay__title}>Tata Cara Pembayaran</h1>
+        <h1 className={styles.howtopay__title}>Tata Cara Pembelian</h1>
         <p className={styles.howtopay__desc}>
-          Bingung bagaimana cara transaksi pembayaran? berikut arahannya!
+          Bingung bagaimana cara transaksi pembelian? berikut arahannya!
         </p>
       </div>
       <div>{showCardHowToPay}</div>

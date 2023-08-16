@@ -10,6 +10,7 @@ export default function ProductsPage() {
     <Layout title="Products Page" active="Products">
       <div className={styles.products__wrapper}>
         <h1 className={styles.products__title}>Menu Kami</h1>
+        <h4>Pemesanan Khusus Daerah Cilodong, Jawa Barat</h4>
         <p className={styles.products__desc}>
           Menu kami disajikan dengan sangat cepat dan memiliki bumbu rahasia
           yang unik.

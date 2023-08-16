@@ -20,7 +20,7 @@ const dataInit = [
 
 export default function FormPayment({ productCart }) {
   const router = useRouter();
-  const { totalPrice } = useTotal(productCart);
+  const { totalPrice, totalPriceOngkir } = useTotal(productCart);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -30,7 +30,12 @@ export default function FormPayment({ productCart }) {
       notes: "",
     },
     onSubmit: (values) => {
-      whatsappMessage({ productCart, user: values, total: totalPrice });
+      whatsappMessage({
+        productCart,
+        user: values,
+        totalHarga: totalPrice,
+        totalHargaOngkir: totalPriceOngkir,
+      });
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Nama harus diisi"),
