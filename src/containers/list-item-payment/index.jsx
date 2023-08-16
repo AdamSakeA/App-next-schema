@@ -11,7 +11,7 @@ export default function ListItemPayment({ payload }) {
   return (
     <div className={styles.list_item}>
       <p>Total Harga Pesanan Rp.{totalPrice}</p>
-      <p>Total Harga Ongkir Rp.20.000</p>
+      <p>Total Harga Ongkir Rp.15.000</p>
       <h4>Total Harga Rp.{totalPriceOngkir}</h4>
       <div className={styles.list_item__card}>{cardPayment}</div>
     </div>
